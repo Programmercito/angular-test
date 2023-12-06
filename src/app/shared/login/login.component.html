@@ -1,0 +1,16 @@
+
+<div class="contenedor p-d-flex p-jc-center">
+    <p-card header="Iniciar sesión">
+        <div class="p-fluid p-p-4">
+            <div class="p-field">
+                <label for="username">Usuario</label>
+                <input id="username" type="text" pInputText [(ngModel)]="username">
+            </div>
+            <div class="p-field">
+                <label for="password">Contraseña</label>
+                <input id="password" type="password" pPassword [(ngModel)]="password">
+            </div>
+            <button pButton type="button" label="Entrar" (click)="login()"></button>
+        </div>
+    </p-card>
+</div>

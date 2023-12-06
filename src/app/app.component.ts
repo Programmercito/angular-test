@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MessagesService } from './core/messages.service';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'altacrestita';
+
+  constructor( public messageser: MessagesService) {
+  }
 }
