@@ -1,5 +1,10 @@
 <p-card header="Posts">
-    <p-button icon="pi pi-plus" (click)="crear()"></p-button>
+    <div>
+        <p-button icon="pi pi-plus" (click)="crear()"></p-button>
+    </div>
+    <div>
+        Buscar:<input class="input-bus" id="title" type="text" pInputText [(ngModel)]="buscar">
+    </div>
     <p-toast></p-toast>
     <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 

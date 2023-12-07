@@ -6,6 +6,8 @@ import { PostDeleteService } from 'src/app/core/post-delete.service';
 import { PostUpdateService } from 'src/app/core/post-update.service';
 import { PostCreateService } from 'src/app/core/post-create.service';
 import { PaginatorState } from 'primeng/paginator';
+import { Observable } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-posts',
@@ -13,6 +15,9 @@ import { PaginatorState } from 'primeng/paginator';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
+  posts$: Observable<Post[]> | undefined;
+  filter = new FormControl('', { nonNullable: true });
+
   posts!: Post[];
   current!: Post;
   indice: number = 0;
@@ -20,6 +25,7 @@ export class PostsComponent implements OnInit {
   operacion: string = "";
   first: number = 0;
   rows: number = 10;
+  buscar:string="";
 
   constructor(private postservice: PostsService,
     private confirmationService: ConfirmationService,
@@ -106,6 +112,10 @@ export class PostsComponent implements OnInit {
       next: (data: any) => {
         this.posts = data;
         this.current = data[0];
+        this.posts = this.posts.filter(post => {
+          const searchTerm1 = this.buscar;
+          return post.title||''.toLowerCase().includes(searchTerm1) && post.body||''.toLowerCase().includes(searchTerm1);
+        });
       },
       error: (eror: any) => {
 
