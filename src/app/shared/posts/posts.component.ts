@@ -32,11 +32,27 @@ export class PostsComponent implements OnInit {
 
   grabar(actual: Post) {
     if (this.operacion == 'add') {
-      this.create.agregarArray(this.current, this.posts);
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Agregado' });
-    } else {
-      this.update.modificaArray(this.current, this.posts);
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Modificado' });
+      this.create.createApiPost(actual).subscribe({
+        next: (data: Post) => {
+          this.create.agregarArray(data, this.posts);
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Agregado' });
+     
+        },
+        error: (error: any) => {
+          this.messageService.add({ severity: 'error', summary: 'error', detail: 'Error al modificar ' });
+        }
+      });
+   } else {
+      this.update.modifyApiPost(actual).subscribe({
+        next: (data: Post) => {
+          this.update.modificaArray(data, this.posts);
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Modificado' });
+
+        },
+        error: (error: any) => {
+          this.messageService.add({ severity: 'error', summary: 'error', detail: 'Error al modificar ' });
+        }
+      });
     }
     this.visible = false;
 
@@ -62,8 +78,16 @@ export class PostsComponent implements OnInit {
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.posts = this.poservice.delete(post, this.posts);
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Eliminado' });
+        this.poservice.deleteApiPost(post.id!).subscribe({
+          next: (data: any) => {
+            this.posts = this.poservice.delete(post, this.posts);
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Eliminado' });
+          },
+          error: (error: any) => {
+            this.messageService.add({ severity: 'error', summary: 'error', detail: 'Error al eliminar' });
+
+          }
+        });
       },
       reject: (type: any) => {
         this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'cancelado no se elimino nada' });
@@ -77,7 +101,6 @@ export class PostsComponent implements OnInit {
       next: (data: any) => {
         this.posts = data;
         this.current = data[0];
-        console.log('llegaron los datos', this.posts);
       },
       error: (eror: any) => {
 
