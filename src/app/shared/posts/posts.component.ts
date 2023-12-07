@@ -5,6 +5,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { PostDeleteService } from 'src/app/core/post-delete.service';
 import { PostUpdateService } from 'src/app/core/post-update.service';
 import { PostCreateService } from 'src/app/core/post-create.service';
+import { PaginatorState } from 'primeng/paginator';
 
 @Component({
   selector: 'app-posts',
@@ -17,6 +18,8 @@ export class PostsComponent implements OnInit {
   indice: number = 0;
   visible: boolean = false;
   operacion: string = "";
+  first: number = 0;
+  rows: number = 10;
 
   constructor(private postservice: PostsService,
     private confirmationService: ConfirmationService,
@@ -26,6 +29,8 @@ export class PostsComponent implements OnInit {
     private create: PostCreateService) {
 
   }
+
+
   cancelar(cancela: Post) {
     this.visible = false;
   }
@@ -36,13 +41,13 @@ export class PostsComponent implements OnInit {
         next: (data: Post) => {
           this.create.agregarArray(data, this.posts);
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Agregado' });
-     
+
         },
         error: (error: any) => {
           this.messageService.add({ severity: 'error', summary: 'error', detail: 'Error al modificar ' });
         }
       });
-   } else {
+    } else {
       this.update.modifyApiPost(actual).subscribe({
         next: (data: Post) => {
           this.update.modificaArray(data, this.posts);

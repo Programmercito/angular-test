@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
+import { PaginatorModule } from 'primeng/paginator';
 
 
 @NgModule({
@@ -49,7 +50,9 @@ import { DialogModule } from 'primeng/dialog';
     HttpClientModule,
     ConfirmDialogModule,
     ToastModule,
-    DialogModule
+    DialogModule,
+    PaginatorModule
+
   ],
   providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent]
