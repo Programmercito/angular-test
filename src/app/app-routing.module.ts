@@ -5,15 +5,16 @@ import { HomeComponent } from './shared/home/home.component';
 import { PostsComponent } from './shared/posts/posts.component';
 import { UsersComponent } from './shared/users/users.component';
 import { ContactComponent } from './shared/contact/contact.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
-      path: '', component: HomeComponent, children: [
-          { path: 'register/posts', component: PostsComponent },
-          { path: 'register/users', component: UsersComponent },
-          { path: 'register/contact', component: ContactComponent }
-      ]
+    path: '', component: HomeComponent, children: [
+      { path: 'register/posts', component: PostsComponent },
+      { path: 'register/users', component: UsersComponent },
+      { path: 'register/contact', component: ContactComponent }
+    ], canActivate: [authGuard]
   }
 
 

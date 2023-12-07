@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -6,7 +7,7 @@ import { MenuItem } from 'primeng/api';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent  implements OnInit {
+export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.items = [
       {
@@ -24,8 +25,19 @@ export class HomeComponent  implements OnInit {
       {
         label: 'Contact',
         routerLink: 'register/contact'
+      },
+      {
+        label: 'Sign out',
+        command: () => this.cerrar()
       }
     ];
+  }
+  cerrar(): void {
+    sessionStorage.removeItem('iniciado');
+    this.route.navigate(['/login']);
+  }
+  constructor(private route: Router) {
+
   }
   items: MenuItem[] | undefined;
 }

@@ -15,7 +15,9 @@ export class LoginComponent {
 
   ngOnInit(): void {
   }
-
+  lo() {
+    console.log('entrandoc');
+  }
   login() {
     console.log('entrando');
     if (this.validar(this.username, this.password)) {
