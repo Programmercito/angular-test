@@ -24,7 +24,7 @@ export class LoginComponent {
       sessionStorage.setItem('iniciado', this.username);
       this.meservice.messages = [{ severity: 'success', summary: 'success', detail: 'Usuario correcto ingresando....' }];
       setTimeout(() => {
-        this.routes.navigate(['/']);
+        this.routes.navigate(['/home']);
         this.meservice.messages = [];
       }, 2000);
     } else {

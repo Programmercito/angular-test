@@ -6,6 +6,7 @@ import { PostsComponent } from './shared/posts/posts.component';
 import { UsersComponent } from './shared/users/users.component';
 import { ContactComponent } from './shared/contact/contact.component';
 import { authGuard } from './guards/auth.guard';
+import { RegisterComponent } from './shared/register/register.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,6 +14,7 @@ export const routes: Routes = [
     path: '', component: HomeComponent, children: [
       { path: 'register/posts', component: PostsComponent },
       { path: 'register/users', component: UsersComponent },
+      { path: 'home', component: RegisterComponent },
       { path: 'register/contact', component: ContactComponent }
     ], canActivate: [authGuard]
   }

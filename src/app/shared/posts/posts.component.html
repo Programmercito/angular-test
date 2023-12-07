@@ -1,1 +1,26 @@
-<p>posts works!</p>
+<p-card header="Posts">
+    <p-table [value]="this.posts" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Body</th>
+                <th>User</th>
+                <th>Operaciones</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-post>
+            <tr>
+                <td>{{ post.id }}</td>
+                <td>{{ post.title }}</td>
+                <td>{{ post.body }}</td>
+                <td>{{ post.userId }}</td>
+                <th>
+                    <p-button icon="pi pi-minus" severity="danger"></p-button>
+                    <p-button icon="pi pi-pencil" severity="success"></p-button>
+                </th>
+
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>

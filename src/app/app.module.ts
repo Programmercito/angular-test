@@ -16,6 +16,11 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { MessagesModule } from 'primeng/messages';
 import { MenubarModule } from 'primeng/menubar';
+import { RegisterComponent } from './shared/register/register.component';
+import { TableModule } from 'primeng/table';
+import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +28,8 @@ import { MenubarModule } from 'primeng/menubar';
     HomeComponent,
     PostsComponent,
     UsersComponent,
-    ContactComponent
+    ContactComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -34,7 +40,9 @@ import { MenubarModule } from 'primeng/menubar';
     ButtonModule,
     CardModule,
     MessagesModule,
-    MenubarModule
+    MenubarModule,
+    TableModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
