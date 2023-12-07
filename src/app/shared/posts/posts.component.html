@@ -1,5 +1,5 @@
 <p-card header="Posts">
-    <p-button>Agregar</p-button>
+    <p-button icon="pi pi-plus" (click)="crear()"></p-button>
     <p-toast></p-toast>
     <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 
@@ -28,3 +28,39 @@
         </ng-template>
     </p-table>
 </p-card>
+<p-dialog header="Header" [modal]="true" [(visible)]="visible" [style]="{ width: '50vw' }">
+    <ng-template pTemplate="header">
+        <span class="text-xl font-bold">Post</span>
+    </ng-template>
+    <ng-container *ngIf="this.operacion=='add'">
+        <div>
+            <label>ID </label>
+        </div>
+        <div>
+            <input id="id" type="text" pInputText [(ngModel)]="current.id">
+        </div>
+    </ng-container>
+
+    <div>
+        <label>Title </label>
+    </div>
+    <div>
+        <input id="title" type="text" pInputText [(ngModel)]="current.title">
+    </div>
+    <div>
+        <label>Body </label>
+    </div>
+    <div>
+        <input id="body" type="text" pInputText [(ngModel)]="current.body">
+    </div>
+    <div>
+        <label>User </label>
+    </div>
+    <div>
+        <input id="userid" type="text" pInputText [(ngModel)]="current.userId">
+    </div>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="grabar(current)" label="Grabar" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-minus" (click)="cancelar(current)" label="Cancelar" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>
