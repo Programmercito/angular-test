@@ -1,4 +1,8 @@
 <p-card header="Posts">
+    <p-button>Agregar</p-button>
+    <p-toast></p-toast>
+    <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+
     <p-table [value]="this.posts" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
             <tr>
@@ -16,8 +20,8 @@
                 <td>{{ post.body }}</td>
                 <td>{{ post.userId }}</td>
                 <th>
-                    <p-button icon="pi pi-minus" severity="danger"></p-button>
-                    <p-button icon="pi pi-pencil" severity="success"></p-button>
+                    <p-button icon="pi pi-minus" severity="danger" (click)="delete(post)"></p-button>
+                    <p-button icon="pi pi-pencil" severity="success" (click)="edit(post)"></p-button>
                 </th>
 
             </tr>

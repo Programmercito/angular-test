@@ -4,7 +4,7 @@ import { Message } from 'primeng/api';
 @Injectable({
   providedIn: 'root'
 })
-export class MessagesService {
+export class MeService {
   messages: Message[] = [];
 
   constructor() { }

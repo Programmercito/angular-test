@@ -8,6 +8,7 @@ import { HomeComponent } from './shared/home/home.component';
 import { PostsComponent } from './shared/posts/posts.component';
 import { UsersComponent } from './shared/users/users.component';
 import { ContactComponent } from './shared/contact/contact.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
@@ -18,7 +19,9 @@ import { MessagesModule } from 'primeng/messages';
 import { MenubarModule } from 'primeng/menubar';
 import { RegisterComponent } from './shared/register/register.component';
 import { TableModule } from 'primeng/table';
-import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -42,9 +45,11 @@ import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http'
     MessagesModule,
     MenubarModule,
     TableModule,
-    HttpClientModule
+    HttpClientModule,
+    ConfirmDialogModule,
+    ToastModule
   ],
-  providers: [],
+  providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
