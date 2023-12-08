@@ -36,8 +36,8 @@ Probar el borrado de posts
 Probar la modificación de posts
 Probar la búsqueda de posts
 
-El repositorio es: Programmercito/angular-test (github.com)
-Aplicacion desplegada: https://programmercito.github.io/angular-test 
+El repositorio es: [Programmercito/angular-test (github.com)](https://github.com/Programmercito/angular-test)
+Aplicacion desplegada: [https://programmercito.github.io/angular-test ](https://programmercito.github.io/angular-test/#/login)
 
 Aqui como instalar:
 
