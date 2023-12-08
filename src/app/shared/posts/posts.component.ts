@@ -5,9 +5,6 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { PostDeleteService } from 'src/app/core/post-delete.service';
 import { PostUpdateService } from 'src/app/core/post-update.service';
 import { PostCreateService } from 'src/app/core/post-create.service';
-import { PaginatorState } from 'primeng/paginator';
-import { Observable } from 'rxjs';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-posts',
