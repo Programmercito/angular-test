@@ -3,7 +3,7 @@
         <p-button icon="pi pi-plus" (click)="crear()"></p-button>
     </div>
     <div>
-        Buscar:<input class="input-bus" id="title" type="text" pInputText [(ngModel)]="buscar">
+        Buscar:<input  [(ngModel)]="buscar" (ngModelChange)="filtrarPosts()"  class="input-bus" id="buscar" type="text" pInputText>
     </div>
     <p-toast></p-toast>
     <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>

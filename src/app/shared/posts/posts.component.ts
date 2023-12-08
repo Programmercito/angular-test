@@ -15,17 +15,32 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
-  posts$: Observable<Post[]> | undefined;
-  filter = new FormControl('', { nonNullable: true });
 
   posts!: Post[];
+  postscompleto!: Post[];
   current!: Post;
   indice: number = 0;
   visible: boolean = false;
   operacion: string = "";
   first: number = 0;
   rows: number = 10;
-  buscar:string="";
+  buscar: string = "";
+
+  filtrarPosts() {
+    if (this.postscompleto==undefined ) {
+      this.postscompleto = JSON.parse(JSON.stringify(this.posts));
+    } else {
+      this.posts=JSON.parse(JSON.stringify(this.postscompleto))
+    }
+    setTimeout(() => {
+
+      this.posts = this.posts.filter(post => {
+        const search = this.buscar.toLowerCase();
+        let resul: boolean;
+        return (post.title || '').toLowerCase().includes(search) || (post.body || '').toLowerCase().includes(search);
+      });
+    });
+  }
 
   constructor(private postservice: PostsService,
     private confirmationService: ConfirmationService,
@@ -46,6 +61,8 @@ export class PostsComponent implements OnInit {
       this.create.createApiPost(actual).subscribe({
         next: (data: Post) => {
           this.create.agregarArray(data, this.posts);
+          this.postscompleto = JSON.parse(JSON.stringify(this.posts));
+
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Agregado' });
 
         },
@@ -57,6 +74,8 @@ export class PostsComponent implements OnInit {
       this.update.modifyApiPost(actual).subscribe({
         next: (data: Post) => {
           this.update.modificaArray(data, this.posts);
+          this.postscompleto = JSON.parse(JSON.stringify(this.posts));
+
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Modificado' });
 
         },
@@ -92,6 +111,7 @@ export class PostsComponent implements OnInit {
         this.poservice.deleteApiPost(post.id!).subscribe({
           next: (data: any) => {
             this.posts = this.poservice.delete(post, this.posts);
+            this.postscompleto = JSON.parse(JSON.stringify(this.posts));
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Eliminado' });
           },
           error: (error: any) => {
@@ -112,10 +132,7 @@ export class PostsComponent implements OnInit {
       next: (data: any) => {
         this.posts = data;
         this.current = data[0];
-        this.posts = this.posts.filter(post => {
-          const searchTerm1 = this.buscar;
-          return post.title||''.toLowerCase().includes(searchTerm1) && post.body||''.toLowerCase().includes(searchTerm1);
-        });
+
       },
       error: (eror: any) => {
 
