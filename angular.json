@@ -20,7 +20,7 @@
             "outputPath": "docs",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "baseHref": "/angular-test",
+            "baseHref": "/angular-test/",
             "polyfills": [
               "zone.js"
             ],
