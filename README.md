@@ -1,7 +1,7 @@
-#Test de Angular
+# Test de Angular
 Este proyecto es una aplicación de login desarrollada con Angular que tiene login, y crud de posts.
 
-#Instalación
+# Instalación
 Para instalar el proyecto localmente, se debe clonar el repositorio, instalar las dependencias y levantar el servidor:
 
 git clone https://github.com/Programmercito/angular-test.git
@@ -11,7 +11,7 @@ ng serve
 
 Luego, se puede acceder a la aplicación desde el navegador en http://localhost:4200/angular-test
 
-#Posibles mejoras
+# Posibles mejoras
 
 La aplicación, a pesar de cumplir con lo básico, tiene varios puntos que podrían mejorarse. A continuación algunas ideas:
 
